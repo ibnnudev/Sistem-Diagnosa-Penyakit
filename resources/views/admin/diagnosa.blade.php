@@ -57,15 +57,31 @@
                                                     <span class="ml-2">{{ $value->nama }}</span>
                                                 </div>
                                                 <div>
-                                                    <select name="diagnosa[]" id=""
+                                                    <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
-                                                        <option value="{{ $value->id }}+0">Tidak Yakin</option>
-                                                        <option value="{{ $value->id }}+1">Sangat Yakin</option>
-                                                        <option value="{{ $value->id }}+0.8">Yakin</option>
-                                                        <option value="{{ $value->id }}+0.6">Cukup Yakin</option>
-                                                        <option value="{{ $value->id }}+0.4">Kurang Yakin</option>
-                                                        <option value="{{ $value->id }}+0.2">Tidak Tahu</option>
+                                                        <option value="" disabled selected>Pilih</option>
+                                                        <option value="{{ $value->id }}+0"
+                                                            data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
+                                                            Tidak Yakin</option>
+                                                        <option value="{{ $value->id }}+1"
+                                                            data-source="{{ asset('storage/gejala/' . $value->sy_pic) }}">
+                                                            Sangat
+                                                            Yakin</option>
+                                                        <option value="{{ $value->id }}+0.8"
+                                                            data-source="{{ asset('storage/gejala/' . $value->y_pic) }}">
+                                                            Yakin</option>
+                                                        <option value="{{ $value->id }}+0.6"
+                                                            data-source="{{ asset('storage/gejala/' . $value->cy_pic) }}">
+                                                            Cukup Yakin</option>
+                                                        <option value="{{ $value->id }}+0.4"
+                                                            data-source="{{ asset('storage/gejala/' . $value->ky_pic) }}">
+                                                            Kurang Yakin</option>
+                                                        <option value="{{ $value->id }}+0.2"
+                                                            data-source="{{ asset('storage/gejala/' . $value->tt_pic) }}">
+                                                            Tidak Tahu</option>
                                                     </select>
+                                                    <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
+                                                        style="width: 100px; height: 100px; display: none">
                                                 </div>
                                             </div>
                                         </div>
@@ -87,16 +103,24 @@
                                                         class="form-control form-control-sm red-border">
                                                         <option value="" disabled selected>Pilih</option>
                                                         <option value="{{ $value->id }}+0"
-                                                            data-source="https://www.syncfusion.com/blogs/wp-content/uploads/2023/11/JavaScript.png">
+                                                            data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
                                                             Tidak Yakin</option>
                                                         <option value="{{ $value->id }}+1"
-                                                            data-source="https://www.syncfusion.com/blogs/wp-content/uploads/2023/04/Syncfusion-JavaScript-Tooltip-1.png">
+                                                            data-source="{{ asset('storage/gejala/' . $value->sy_pic) }}">
                                                             Sangat
                                                             Yakin</option>
-                                                        <option value="{{ $value->id }}+0.8">Yakin</option>
-                                                        <option value="{{ $value->id }}+0.6">Cukup Yakin</option>
-                                                        <option value="{{ $value->id }}+0.4">Kurang Yakin</option>
-                                                        <option value="{{ $value->id }}+0.2">Tidak Tahu</option>
+                                                        <option value="{{ $value->id }}+0.8"
+                                                            data-source="{{ asset('storage/gejala/' . $value->y_pic) }}">
+                                                            Yakin</option>
+                                                        <option value="{{ $value->id }}+0.6"
+                                                            data-source="{{ asset('storage/gejala/' . $value->cy_pic) }}">
+                                                            Cukup Yakin</option>
+                                                        <option value="{{ $value->id }}+0.4"
+                                                            data-source="{{ asset('storage/gejala/' . $value->ky_pic) }}">
+                                                            Kurang Yakin</option>
+                                                        <option value="{{ $value->id }}+0.2"
+                                                            data-source="{{ asset('storage/gejala/' . $value->tt_pic) }}">
+                                                            Tidak Tahu</option>
                                                     </select>
                                                     <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
                                                         style="width: 100px; height: 100px; display: none">
@@ -135,6 +159,12 @@
             $('select[name="diagnosa[]"]').on('change', function() {
                 let source = $(this).find(':selected').data('source');
                 let id = $(this).attr('id')
+                let filename = source.split('/').pop()
+                console.log(filename);
+                if (filename == 'gejala') {
+                    $(`#img-container-${id}`).css('display', 'none')
+                    return
+                }
                 $(`#img-container-${id}`).attr('src', source)
                 $(`#img-container-${id}`).css('display', 'block')
             })

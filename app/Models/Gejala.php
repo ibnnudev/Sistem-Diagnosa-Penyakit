@@ -14,6 +14,12 @@ class Gejala extends Model
         'nama',
         'kode',
         'kategori',
+        'ty_pic',
+        'sy_pic',
+        'y_pic',
+        'cy_pic',
+        'ky_pic',
+        'tt_pic',
     ];
 
     public $timestamps = false;

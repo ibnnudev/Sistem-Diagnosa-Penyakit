@@ -50,7 +50,7 @@
     </x-card>
 
     <x-modal title="Tambahkan Gejala" id="gejala">
-        <form action="{{ route('admin.gejala.store') }}" method="POST">
+        <form action="{{ route('admin.gejala.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-4">
@@ -76,21 +76,60 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="sy_pic">Sangat Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="sy_pic" name="sy_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="y_pic">Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="y_pic" name="y_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="ty_pic">Tidak Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="ty_pic" name="ty_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="cy_pic">Cukup Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="cy_pic" name="cy_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="ky_pic">Kurang Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="ky_pic" name="ky_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="tt_pic">Tidak Tahu</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="tt_pic" name="tt_pic">
+                    </div>
+                </div>
+            </div>
             <div class="mt-2">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
     </x-modal>
 
-    <x-modal title="Tambahkan Gejala" id="edit-gejala">
-        <form action="{{ route('admin.gejala.update') }}" method="POST">
+    <x-modal title="Ubah Gejala" id="edit-gejala">
+        <form action="{{ route('admin.gejala.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="nama">Kode Gejala</label>
-                        <input type="text" class="form-control" name="kode" value="{{ $lastCode }}" disabled>
+                        <input type="text" class="form-control" name="kode" value="{{ $lastCode }}"
+                            disabled>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -107,6 +146,44 @@
                             <option value="daun">Daun</option>
                             <option value="batang">Batang</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="sy_pic">Sangat Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="sy_pic" name="sy_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="y_pic">Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="y_pic" name="y_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="ty_pic">Tidak Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="ty_pic" name="ty_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="cy_pic">Cukup Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="cy_pic" name="cy_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="ky_pic">Kurang Yakin</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="ky_pic" name="ky_pic">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="tt_pic">Tidak Tahu</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="tt_pic" name="tt_pic">
                     </div>
                 </div>
             </div>
@@ -130,8 +207,6 @@
                     text: "Kamu tidak akan bisa mengembalikannya kembali!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
                     cancelButtonText: 'Batal',
                     confirmButtonText: 'Ya, hapus!'
                 }).then((result) => {
@@ -149,6 +224,31 @@
                     $('#edit-gejala input[name="nama"]').val(res.nama)
                     $('#edit-gejala input[name="kode"]').val(res.kode)
                     $('#edit-gejala select[name="kategori"]').val(res.kategori)
+                    let sy_pic = res.sy_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.sy_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+                    let y_pic = res.y_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.y_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+                    let ty_pic = res.ty_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.ty_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+                    let cy_pic = res.cy_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.cy_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+                    let ky_pic = res.ky_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.ky_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+                    let tt_pic = res.tt_pic ?
+                        `<img src="{{ asset('storage/gejala') }}/${res.tt_pic}" class="img-thumbnail" width="60" height="60">` :
+                        ''
+
+                    $('#edit-gejala #sy_pic').after(sy_pic)
+                    $('#edit-gejala #y_pic').after(y_pic)
+                    $('#edit-gejala #ty_pic').after(ty_pic)
+                    $('#edit-gejala #cy_pic').after(cy_pic)
+                    $('#edit-gejala #ky_pic').after(ky_pic)
+                    $('#edit-gejala #tt_pic').after(tt_pic)
 
                     $('#edit-gejala').modal('show')
                 })
