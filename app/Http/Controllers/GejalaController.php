@@ -53,23 +53,23 @@ class GejalaController extends Controller
         $data = $request->all();
         $data['kode'] = $this->generateCode(Gejala::orderBy('kode', 'desc')->first());
 
-        $fileNameSy = uniqid() . '.' . $request->sy_pic;
-        $request->sy_pic->storeAs('public/gejala', $fileNameSy);
+        $fileNameSy = uniqid() . '.' . $request->file('sy_pic')->getClientOriginalExtension();
+        $request->file('sy_pic')->storeAs('public/gejala', $fileNameSy);
 
-        $fileNameY = uniqid() . '.' . $request->y_pic;
-        $request->y_pic->storeAs('public/gejala', $fileNameY);
+        $fileNameY = uniqid() . '.' . $request->file('y_pic')->getClientOriginalExtension();
+        $request->file('y_pic')->storeAs('public/gejala', $fileNameY);
 
-        $fileNameCy = uniqid() . '.' . $request->cy_pic;
-        $request->cy_pic->storeAs('public/gejala', $fileNameCy);
+        $fileNameCy = uniqid() . '.' . $request->file('cy_pic')->getClientOriginalExtension();
+        $request->file('cy_pic')->storeAs('public/gejala', $fileNameCy);
 
-        $fileNameKy = uniqid() . '.' . $request->ky_pic;
-        $request->ky_pic->storeAs('public/gejala', $fileNameKy);
+        $fileNameKy = uniqid() . '.' . $request->file('ky_pic')->getClientOriginalExtension();
+        $request->file('ky_pic')->storeAs('public/gejala', $fileNameKy);
 
-        $fileNameTt = uniqid() . '.' . $request->tt_pic;
-        $request->tt_pic->storeAs('public/gejala', $fileNameTt);
+        $fileNameTt = uniqid() . '.' . $request->file('tt_pic')->getClientOriginalExtension();
+        $request->file('tt_pic')->storeAs('public/gejala', $fileNameTt);
 
-        $fileNameTy = uniqid() . '.' . $request->ty_pic;
-        $request->ty_pic->storeAs('public/gejala', $fileNameTy);
+        $fileNameTy = uniqid() . '.' . $request->file('ty_pic')->getClientOriginalExtension();
+        $request->file('ty_pic')->storeAs('public/gejala', $fileNameTy);
 
         $data['sy_pic'] = $fileNameSy;
         $data['y_pic'] = $fileNameY;
