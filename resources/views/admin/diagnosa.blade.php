@@ -57,12 +57,12 @@
                                                 <div>
                                                     <select name="diagnosa[]" id=""
                                                         class="form-control form-control-sm red-border">
+                                                        <option value="{{ $value->id }}+0">Tidak Yakin</option>
                                                         <option value="{{ $value->id }}+1">Sangat Yakin</option>
                                                         <option value="{{ $value->id }}+0.8">Yakin</option>
                                                         <option value="{{ $value->id }}+0.6">Cukup Yakin</option>
                                                         <option value="{{ $value->id }}+0.4">Kurang Yakin</option>
                                                         <option value="{{ $value->id }}+0.2">Tidak Tahu</option>
-                                                        <option value="{{ $value->id }}+0">Tidak Yakin</option>
                                                     </select>
                                                 </div>
                                             </div>
