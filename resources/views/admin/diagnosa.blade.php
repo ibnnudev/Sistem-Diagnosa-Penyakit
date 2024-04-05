@@ -3,6 +3,8 @@
         Diagnosa penyakit
     </x-slot>
 
+
+
     <x-slot name="head">
         <style>
             .red-border {
@@ -81,15 +83,23 @@
                                                     <span class="ml-2">{{ $value->nama }}</span>
                                                 </div>
                                                 <div>
-                                                    <select name="diagnosa[]" id=""
+                                                    <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
-                                                        <option value="{{ $value->id }}+1">Sangat Yakin</option>
+                                                        <option value="" disabled selected>Pilih</option>
+                                                        <option value="{{ $value->id }}+0"
+                                                            data-source="https://www.syncfusion.com/blogs/wp-content/uploads/2023/11/JavaScript.png">
+                                                            Tidak Yakin</option>
+                                                        <option value="{{ $value->id }}+1"
+                                                            data-source="https://www.syncfusion.com/blogs/wp-content/uploads/2023/04/Syncfusion-JavaScript-Tooltip-1.png">
+                                                            Sangat
+                                                            Yakin</option>
                                                         <option value="{{ $value->id }}+0.8">Yakin</option>
                                                         <option value="{{ $value->id }}+0.6">Cukup Yakin</option>
                                                         <option value="{{ $value->id }}+0.4">Kurang Yakin</option>
                                                         <option value="{{ $value->id }}+0.2">Tidak Tahu</option>
-                                                        <option value="{{ $value->id }}+0">Tidak Yakin</option>
                                                     </select>
+                                                    <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
+                                                        style="width: 100px; height: 100px; display: none">
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +108,7 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Diagnosa sekarang</button>
+                            <button type="submit" class="btn btn-primary" id="tooltip">Diagnosa sekarang</button>
                         </div>
                     </form>
                 </div>
@@ -119,6 +129,14 @@
                 } else {
                     $(this).attr('class', 'form-control form-control-sm green-border')
                 }
+            })
+
+            // change image when select option
+            $('select[name="diagnosa[]"]').on('change', function() {
+                let source = $(this).find(':selected').data('source');
+                let id = $(this).attr('id')
+                $(`#img-container-${id}`).attr('src', source)
+                $(`#img-container-${id}`).css('display', 'block')
             })
         </script>
     </x-slot>
