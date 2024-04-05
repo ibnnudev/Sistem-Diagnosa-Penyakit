@@ -114,27 +114,20 @@
                     // remove all character that not number except dot
                     this.value = this.value.replace(/[^0-9.]/g, '');
                 }
+                if (this.value > 1) {
+                    alert('Nilai tidak boleh lebih dari 1')
+                    this.value = 1;
+                }
             })
 
             $('.check').change(function() {
                 const id = $(this).data('id')
                 const kategori = $(this).data('kategori')
 
-                if (this.checked) {
-                    // Check if there are any other checked inputs in a different category
-                    const otherCheckedInputs = $(`input[name^="gejala-"]:checked`).not(
-                        `input[name="gejala-${kategori}-${id}"]`)
-                    if (otherCheckedInputs.length > 0) {
-                        alert("Gejala yang kamu pilih harus sama dengan kategori penyakit yang kamu pilih sebelumnya")
-                        this.checked = false
-                        $(`input[name="gejala-${kategori}-${id}"]`).attr('disabled', '')
-                        $(`input[name="gejala-${kategori}-${id}"]`).val('')
-                    } else {
-                        $(`input[name="gejala-${kategori}-${id}"]`).removeAttr('disabled')
-                    }
+                if ($(this).is(':checked')) {
+                    $(`input[name="gejala-${kategori}-${id}"]`).prop('disabled', false)
                 } else {
-                    $(`input[name="gejala-${kategori}-${id}"]`).attr('disabled', '')
-                    $(`input[name="gejala-${kategori}-${id}"]`).val('')
+                    $(`input[name="gejala-${kategori}-${id}"]`).prop('disabled', true)
                 }
             })
 
