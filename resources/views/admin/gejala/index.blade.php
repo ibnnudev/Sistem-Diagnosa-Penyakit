@@ -45,7 +45,7 @@
             </tbody>
         </table>
         <div class="mt-2">
-            {{ $gejalaDauns->links() }}
+            {{ $gejala->links() }}
         </div>
     </x-card>
 
