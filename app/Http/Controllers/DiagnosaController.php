@@ -185,6 +185,18 @@ class DiagnosaController extends Controller
         }
 
         $data = $request->all();
+        $zeroCount = 0;
+        foreach ($data['diagnosa'] as $d) {
+            $value = last(explode('+', $d));
+            if ($value == 0) {
+                $zeroCount++;
+            }
+        }
+
+        if (count($data['diagnosa']) == $zeroCount) {
+            return back()->withErrors(['Gejala harus diisi']);
+        }
+
         // check if all diagnosa is null, return back with error
         if (count(array_filter($data['diagnosa'])) == null) {
             return back()->withErrors(['Gejala harus diisi']);
@@ -193,7 +205,7 @@ class DiagnosaController extends Controller
         $result = $this->kalkulasi_cf($data);
 
         if ($result['cf_max'] == null) {
-            return back()->withErrors(['Terjadi sebuah kesalahan']);
+            return back()->withErrors(['Gejala yang ada pilih tidak terdapat pada rules']);
         }
 
         $riwayat = Riwayat::create([

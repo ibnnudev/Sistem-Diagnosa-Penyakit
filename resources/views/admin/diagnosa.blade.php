@@ -59,8 +59,8 @@
                                                 <div>
                                                     <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
-                                                        <option value="" disabled selected>Pilih</option>
-                                                        <option value="{{ $value->id }}+0"
+                                                        {{-- <option value="" disabled selected>Pilih</option> --}}
+                                                        <option selected value="{{ $value->id }}+0"
                                                             data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
                                                             Tidak Yakin</option>
                                                         <option value="{{ $value->id }}+1"
@@ -79,9 +79,11 @@
                                                         <option value="{{ $value->id }}+0.2"
                                                             data-source="{{ asset('storage/gejala/' . $value->tt_pic) }}">
                                                             Tidak Tahu</option>
+
                                                     </select>
+
                                                     <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
-                                                        style="width: 100px; height: 100px; display: none">
+                                                        style="width: 200px; height: 200px; display: none">
                                                 </div>
                                             </div>
                                         </div>
@@ -101,8 +103,8 @@
                                                 <div>
                                                     <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
-                                                        <option value="" disabled selected>Pilih</option>
-                                                        <option value="{{ $value->id }}+0"
+                                                        {{-- <option value="" disabled selected>Pilih</option> --}}
+                                                        <option selected value="{{ $value->id }}+0"
                                                             data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
                                                             Tidak Yakin</option>
                                                         <option value="{{ $value->id }}+1"
