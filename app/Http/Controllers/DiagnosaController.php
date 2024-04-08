@@ -194,6 +194,7 @@ class DiagnosaController extends Controller
                 unset($data['diagnosa'][array_search($d, $data['diagnosa'])]);
             }
         }
+        dd($data);
 
         if (count($data['diagnosa']) == $zeroCount) {
             return back()->withErrors(['Gejala harus diisi']);
