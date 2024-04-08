@@ -190,6 +190,8 @@ class DiagnosaController extends Controller
             $value = last(explode('+', $d));
             if ($value == 0) {
                 $zeroCount++;
+                // remove diagnosa with value 0
+                unset($data['diagnosa'][array_search($d, $data['diagnosa'])]);
             }
         }
 
