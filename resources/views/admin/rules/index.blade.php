@@ -34,7 +34,7 @@
                                     <td>{{ $row->kategori }}</td>
                                     <td>
                                         <input type="number" step="0.2" class="form-control form-control-sm"
-                                            value="{{ $row->pivot->value_cf }}"
+                                            value="{{ $row->pivot->value_cf }}" min="0.2" max="1"
                                             name="gejala-{{ $row->kategori }}-{{ $row->id }}">
                                     </td>
                                     <td>
@@ -118,6 +118,12 @@
                     alert('Nilai tidak boleh lebih dari 1')
                     this.value = 1;
                 }
+                if (this.value == 0) {
+                    alert('Nilai tidak boleh nol !')
+                    this.value = 0.2;
+                }
+
+
             })
 
             $('.check').change(function() {

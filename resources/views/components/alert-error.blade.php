@@ -34,7 +34,7 @@
         $(document).ready(function() {
             $('#errorList').empty();
             @foreach ($errors->all() as $error)
-                $('#errorList').append('<li>{{ $error }} , silahkan diagnosa ulang !</li>');
+                $('#errorList').append('<li>{{ $error }}</li>');
             @endforeach
             $('#errorModal').modal('show'); // Show the modal
         });

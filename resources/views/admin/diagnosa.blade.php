@@ -54,36 +54,48 @@
                                             <div
                                                 class="d-flex align-items-center justify-content-between border mb-2 p-2">
                                                 <div>
-                                                    <span class="ml-2">{{ $value->nama }}</span>
+                                                    <h6 class="ml-2">{{ $value->nama }}</h6>
+                                                    <a href="#" class="ml-2" data-toggle="modal"
+                                                        data-target="#gambarModal{{ $value->id }}">Lihat gambar</a>
                                                 </div>
                                                 <div>
                                                     <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
-                                                        {{-- <option value="" disabled selected>Pilih</option> --}}
-                                                        <option selected value="{{ $value->id }}+0"
-                                                            data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
+                                                        <option selected value="{{ $value->id }}+0">
                                                             Tidak Yakin</option>
-                                                        <option value="{{ $value->id }}+1"
-                                                            data-source="{{ asset('storage/gejala/' . $value->sy_pic) }}">
+                                                        <option value="{{ $value->id }}+1">
                                                             Sangat
                                                             Yakin</option>
-                                                        <option value="{{ $value->id }}+0.8"
-                                                            data-source="{{ asset('storage/gejala/' . $value->y_pic) }}">
+                                                        <option value="{{ $value->id }}+0.8">
                                                             Yakin</option>
-                                                        <option value="{{ $value->id }}+0.6"
-                                                            data-source="{{ asset('storage/gejala/' . $value->cy_pic) }}">
+                                                        <option value="{{ $value->id }}+0.6">
                                                             Cukup Yakin</option>
-                                                        <option value="{{ $value->id }}+0.4"
-                                                            data-source="{{ asset('storage/gejala/' . $value->ky_pic) }}">
+                                                        <option value="{{ $value->id }}+0.4">
                                                             Kurang Yakin</option>
-                                                        <option value="{{ $value->id }}+0.2"
-                                                            data-source="{{ asset('storage/gejala/' . $value->tt_pic) }}">
+                                                        <option value="{{ $value->id }}+0.2">
                                                             Tidak Tahu</option>
-
                                                     </select>
-
-                                                    <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
-                                                        style="width: 200px; height: 200px; display: none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="gambarModal{{ $value->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="gambarModal{{ $value->id }}Label"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="gambarModal{{ $value->id }}Label">Gambar
+                                                            {{ $value->nama }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="{{ asset('storage/gejala/' . $value->image) }}"
+                                                            class="img-fluid" alt="Gambar {{ $value->nama }}">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,34 +110,49 @@
                                             <div
                                                 class="d-flex align-items-center justify-content-between border mb-2 p-2">
                                                 <div>
-                                                    <span class="ml-2">{{ $value->nama }}</span>
+                                                    <h6 class="ml-2">{{ $value->nama }}</h6>
+                                                    <a href="#" class="ml-2" data-toggle="modal"
+                                                        data-target="#gambarModal{{ $value->id }}">Lihat gambar</a>
                                                 </div>
                                                 <div>
                                                     <select name="diagnosa[]" id="{{ $value->kode }}"
                                                         class="form-control form-control-sm red-border">
                                                         {{-- <option value="" disabled selected>Pilih</option> --}}
-                                                        <option selected value="{{ $value->id }}+0"
-                                                            data-source="{{ asset('storage/gejala/' . $value->ty_pic) }}">
+                                                        <option selected value="{{ $value->id }}+0">
                                                             Tidak Yakin</option>
-                                                        <option value="{{ $value->id }}+1"
-                                                            data-source="{{ asset('storage/gejala/' . $value->sy_pic) }}">
+                                                        <option value="{{ $value->id }}+1">
                                                             Sangat
                                                             Yakin</option>
-                                                        <option value="{{ $value->id }}+0.8"
-                                                            data-source="{{ asset('storage/gejala/' . $value->y_pic) }}">
+                                                        <option value="{{ $value->id }}+0.8">
                                                             Yakin</option>
-                                                        <option value="{{ $value->id }}+0.6"
-                                                            data-source="{{ asset('storage/gejala/' . $value->cy_pic) }}">
+                                                        <option value="{{ $value->id }}+0.6">
                                                             Cukup Yakin</option>
-                                                        <option value="{{ $value->id }}+0.4"
-                                                            data-source="{{ asset('storage/gejala/' . $value->ky_pic) }}">
+                                                        <option value="{{ $value->id }}+0.4">
                                                             Kurang Yakin</option>
-                                                        <option value="{{ $value->id }}+0.2"
-                                                            data-source="{{ asset('storage/gejala/' . $value->tt_pic) }}">
+                                                        <option value="{{ $value->id }}+0.2">
                                                             Tidak Tahu</option>
                                                     </select>
-                                                    <img id="img-container-{{ $value->kode }}" class="img-thumbnail"
-                                                        style="width: 100px; height: 100px; display: none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal fade" id="gambarModal{{ $value->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="gambarModal{{ $value->id }}Label"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="gambarModal{{ $value->id }}Label">Gambar
+                                                            {{ $value->nama }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="{{ asset('storage/gejala/' . $value->image) }}"
+                                                            class="img-fluid" alt="Gambar {{ $value->nama }}">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,20 +182,6 @@
                 } else {
                     $(this).attr('class', 'form-control form-control-sm green-border')
                 }
-            })
-
-            // change image when select option
-            $('select[name="diagnosa[]"]').on('change', function() {
-                let source = $(this).find(':selected').data('source');
-                let id = $(this).attr('id')
-                let filename = source.split('/').pop()
-                console.log(filename);
-                if (filename == 'gejala') {
-                    $(`#img-container-${id}`).css('display', 'none')
-                    return
-                }
-                $(`#img-container-${id}`).attr('src', source)
-                $(`#img-container-${id}`).css('display', 'block')
             })
         </script>
     </x-slot>

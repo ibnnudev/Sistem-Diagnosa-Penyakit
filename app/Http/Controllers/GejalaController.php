@@ -42,44 +42,18 @@ class GejalaController extends Controller
         $request->validate([
             'nama' => 'required|unique:gejalas,nama',
             'kategori' => 'required',
-            'sy_pic' => 'required',
-            'y_pic' => 'required',
-            'cy_pic' => 'required',
-            'ky_pic' => 'required',
-            'tt_pic' => 'required',
-            'ty_pic' => 'required',
+            'image' => 'required',
         ]);
 
         $data = $request->all();
         $data['kode'] = $this->generateCode(Gejala::orderBy('kode', 'desc')->first());
-
-        $fileNameSy = uniqid() . '.' . $request->file('sy_pic')->getClientOriginalExtension();
-        $request->file('sy_pic')->storeAs('public/gejala', $fileNameSy);
-
-        $fileNameY = uniqid() . '.' . $request->file('y_pic')->getClientOriginalExtension();
-        $request->file('y_pic')->storeAs('public/gejala', $fileNameY);
-
-        $fileNameCy = uniqid() . '.' . $request->file('cy_pic')->getClientOriginalExtension();
-        $request->file('cy_pic')->storeAs('public/gejala', $fileNameCy);
-
-        $fileNameKy = uniqid() . '.' . $request->file('ky_pic')->getClientOriginalExtension();
-        $request->file('ky_pic')->storeAs('public/gejala', $fileNameKy);
-
-        $fileNameTt = uniqid() . '.' . $request->file('tt_pic')->getClientOriginalExtension();
-        $request->file('tt_pic')->storeAs('public/gejala', $fileNameTt);
-
-        $fileNameTy = uniqid() . '.' . $request->file('ty_pic')->getClientOriginalExtension();
-        $request->file('ty_pic')->storeAs('public/gejala', $fileNameTy);
-
-        $data['sy_pic'] = $fileNameSy;
-        $data['y_pic'] = $fileNameY;
-        $data['cy_pic'] = $fileNameCy;
-        $data['ky_pic'] = $fileNameKy;
-        $data['tt_pic'] = $fileNameTt;
-        $data['ty_pic'] = $fileNameTy;
-
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/gejala', $fileName);
+            $data['image'] = $fileName;
+        }
         Gejala::create($data);
-
         return back()->with('success', 'Data gejala berhasil disimpan');
     }
 
@@ -95,81 +69,21 @@ class GejalaController extends Controller
         $request->validate([
             'nama' => 'required|unique:gejalas,nama,' . $request->id,
             'kategori' => 'required',
-            'sy_pic' => 'required',
-            'y_pic' => 'required',
-            'cy_pic' => 'required',
-            'ky_pic' => 'required',
-            'tt_pic' => 'required',
-            'ty_pic' => 'required',
+            'image' => 'required',
         ]);
 
         $gejala = Gejala::where('id', $request->id)->where('nama', $request->nama)->first();
         $data = $request->all();
 
-        if ($gejala->sy_pic == null) {
-            $fileNameSy = uniqid() . '.' . $request->file('sy_pic')->getClientOriginalExtension();
-            $request->file('sy_pic')->storeAs('public/gejala', $fileNameSy);
-            $data['sy_pic'] = $fileNameSy;
+        if ($gejala->image == null) {
+            $fileName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/gejala', $fileName);
+            $data['image'] = $fileName;
         } else {
-            Storage::delete('public/gejala/' . $gejala->sy_pic);
-            $fileNameSy = uniqid() . '.' . $request->file('sy_pic')->getClientOriginalExtension();
-            $request->file('sy_pic')->storeAs('public/gejala', $fileNameSy);
-            $data['sy_pic'] = $gejala->sy_pic;
-        }
-
-        if ($gejala->y_pic == null) {
-            $fileNameY = uniqid() . '.' . $request->file('y_pic')->getClientOriginalExtension();
-            $request->file('y_pic')->storeAs('public/gejala', $fileNameY);
-            $data['y_pic'] = $fileNameY;
-        } else {
-            Storage::delete('public/gejala/' . $gejala->y_pic);
-            $fileNameY = uniqid() . '.' . $request->file('y_pic')->getClientOriginalExtension();
-            $request->file('y_pic')->storeAs('public/gejala', $fileNameY);
-            $data['y_pic'] = $gejala->y_pic;
-        }
-
-        if ($gejala->cy_pic == null) {
-            $fileNameCy = uniqid() . '.' . $request->file('cy_pic')->getClientOriginalExtension();
-            $request->file('cy_pic')->storeAs('public/gejala', $fileNameCy);
-            $data['cy_pic'] = $fileNameCy;
-        } else {
-            Storage::delete('public/gejala/' . $gejala->cy_pic);
-            $fileNameCy = uniqid() . '.' . $request->file('cy_pic')->getClientOriginalExtension();
-            $request->file('cy_pic')->storeAs('public/gejala', $fileNameCy);
-            $data['cy_pic'] = $gejala->cy_pic;
-        }
-
-        if ($gejala->ky_pic == null) {
-            $fileNameKy = uniqid() . '.' . $request->file('ky_pic')->getClientOriginalExtension();
-            $request->file('ky_pic')->storeAs('public/gejala', $fileNameKy);
-            $data['ky_pic'] = $fileNameKy;
-        } else {
-            Storage::delete('public/gejala/' . $gejala->ky_pic);
-            $fileNameKy = uniqid() . '.' . $request->file('ky_pic')->getClientOriginalExtension();
-            $request->file('ky_pic')->storeAs('public/gejala', $fileNameKy);
-            $data['ky_pic'] = $gejala->ky_pic;
-        }
-
-        if ($gejala->tt_pic == null) {
-            $fileNameTt = uniqid() . '.' . $request->file('tt_pic')->getClientOriginalExtension();
-            $request->file('tt_pic')->storeAs('public/gejala', $fileNameTt);
-            $data['tt_pic'] = $fileNameTt;
-        } else {
-            Storage::delete('public/gejala/' . $gejala->tt_pic);
-            $fileNameTt = uniqid() . '.' . $request->file('tt_pic')->getClientOriginalExtension();
-            $request->file('tt_pic')->storeAs('public/gejala', $fileNameTt);
-            $data['tt_pic'] = $gejala->tt_pic;
-        }
-
-        if ($gejala->ty_pic == null) {
-            $fileNameTy = uniqid() . '.' . $request->file('ty_pic')->getClientOriginalExtension();
-            $request->file('ty_pic')->storeAs('public/gejala', $fileNameTy);
-            $data['ty_pic'] = $fileNameTy;
-        } else {
-            Storage::delete('public/gejala/' . $gejala->ty_pic);
-            $fileNameTy = uniqid() . '.' . $request->file('ty_pic')->getClientOriginalExtension();
-            $request->file('ty_pic')->storeAs('public/gejala', $fileNameTy);
-            $data['ty_pic'] = $gejala->ty_pic;
+            Storage::delete('public/gejala/' . $gejala->image);
+            $fileName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('public/gejala', $fileName);
+            $data['image'] = $gejala->image;
         }
 
         Gejala::find($request->id)->update($data);
