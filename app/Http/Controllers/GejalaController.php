@@ -69,25 +69,17 @@ class GejalaController extends Controller
         $request->validate([
             'nama' => 'required|unique:gejalas,nama,' . $request->id,
             'kategori' => 'required',
-            'image' => 'required',
         ]);
 
-        $gejala = Gejala::where('id', $request->id)->where('nama', $request->nama)->first();
+        $gejala = Gejala::findOrFail($request->id);
         $data = $request->all();
-
-        if ($gejala->image == null) {
-            $fileName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('public/gejala', $fileName);
-            $data['image'] = $fileName;
-        } else {
+        if ($request->hasFile('image')) {
             Storage::delete('public/gejala/' . $gejala->image);
             $fileName = uniqid() . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('public/gejala', $fileName);
-            $data['image'] = $gejala->image;
+            $data['image'] = $fileName;
         }
-
-        Gejala::find($request->id)->update($data);
-
+        $gejala->update($data);
         return back()->with('success', 'Data gejala berhasil diubah');
     }
 

@@ -92,7 +92,7 @@
                 </div>
                 <div class="mt-3">
                     <button class="btn-primary btn save" type="submit">Simpan</button>
-                    <a href="" class="btn-warning btn">Reset</a>
+                    <a href="{{ request()->url() }}" class="btn-warning btn">Reset</a>
                 </div>
             </div>
         </div>
