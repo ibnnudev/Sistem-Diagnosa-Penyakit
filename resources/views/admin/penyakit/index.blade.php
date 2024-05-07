@@ -15,7 +15,6 @@
             <thead>
                 <th>Kode</th>
                 <th>Nama penyakit</th>
-                <th>Kategori</th>
                 <th>Penyebab</th>
                 <th></th>
             </thead>
@@ -24,7 +23,6 @@
                     <tr>
                         <td><b>{{ $row->kode }}</b></td>
                         <td>{{ $row->nama }}</td>
-                        <td>{{ $row->kategori ? $row->kategori : '-' }}</td>
                         <td>{{ \Str::limit($row->penyebab, 180) }}</td>
                         <td>
                             <div class="d-flex justify-between-space">
@@ -65,16 +63,6 @@
                         <input type="text" class="form-control" name="nama" required>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="kategori">Kategori</label>
-                        <select name="kategori" class="form-control" required>
-                            <option value="" disabled>Pilih kategori</option>
-                            <option value="daun">Daun</option>
-                            <option value="batang">Batang</option>
-                        </select>
-                    </div>
-                </div>
             </div>
             <div class="row mt-2">
                 <div class="col-md-12">
@@ -105,16 +93,6 @@
                     <div class="form-group">
                         <label for="nama">Nama penyakit</label>
                         <input type="text" class="form-control" name="nama">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="kategori">Kategori</label>
-                        <select name="kategori" class="form-control" required>
-                            <option value="" disabled>Pilih kategori</option>
-                            <option value="daun">Daun</option>
-                            <option value="batang">Batang</option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -164,7 +142,6 @@
                     $('#edit-penyakit input[name="id"]').val(res.id)
                     $('#edit-penyakit input[name="nama"]').val(res.nama)
                     $('#edit-penyakit input[name="kode"]').val(res.kode)
-                    $('#edit-penyakit select[name="kategori"]').val(res.kategori)
                     $('#edit-penyakit textarea').text(res.penyebab)
 
                     $('#edit-penyakit').modal('show')

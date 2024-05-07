@@ -20,9 +20,7 @@ class PenyakitController extends Controller
     {
         $penyakit = Penyakit::all();
         $lastCode = $this->generateCode(Penyakit::orderBy('kode', 'desc')->first());
-        $penyakitDauns = Penyakit::where('kategori', 'daun')->get();
-        $penyakitBatangs = Penyakit::where('kategori', 'batang')->get();
-        return view('admin.penyakit.index', compact('penyakit', 'lastCode', 'penyakitDauns', 'penyakitBatangs'));
+        return view('admin.penyakit.index', compact('penyakit', 'lastCode'));
     }
 
     private function  generateCode($lastCodePenyakit)
@@ -39,12 +37,10 @@ class PenyakitController extends Controller
     {
         $request->validate([
             'nama'     => 'required|unique:penyakits,nama',
-            'kategori' => 'required',
             'penyebab' => 'required'
         ], [
             'nama.unique'       => 'Penyakit sudah ada',
             'nama.required'     => 'Nama penyakit harus diisi',
-            'kategori.required' => 'Kategori penyakit harus diisi',
             'penyebab.required' => 'Penyebab penyakit harus diisi'
         ]);
 
@@ -66,7 +62,6 @@ class PenyakitController extends Controller
     {
         $request->validate([
             'nama'     => 'required',
-            'kategori' => 'required',
             'penyebab' => 'required'
         ]);
 
