@@ -35,33 +35,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="#about-us">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link me-lg-3" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link me-lg-3 text-black" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link me-lg-3 text-black" href="#about-us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link me-lg-3 text-black" href="{{ route('login') }}">Login</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Mashead header-->
     <header id="home" class="masthead"
-        style="background-image: url('{{ asset('assets/img/hero.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; display: flex; justify-content: center; align-items: center;">
-        <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div>
-                    <!-- Mashead text and app badges-->
-                    <div class="mb-5 mb-lg-0 text-center text-lg-center text-white">
-                        <h3 class="display-3 mb-4">SISTEM PAKAR DETEKSI DINI PENYAKIT PADA TANAMAN PADI</h3>
-                        <p class="mb-3" style="font-size: 3vh">Sistem Pakar Yang Dapat Mendiagnosa Penyakit Pada
-                            Tanaman Padi Anda
-                        </p>
-                        <button class="btn btn-outline-light" style="color: white; border-radius: 15px;"
-                            onmouseover="this.style.color='#00ff73';" onmouseout="this.style.color='white';"
-                            onclick="window.location='{{ route('login') }}';">Diagnosa sekarang!</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        style="background-image: url('{{ asset('assets/img/hero.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; position: relative;  filter: brightness(60%);">
     </header>
+
+    <div class="container px-5"
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1;">
+        <h3 class="display-3 mb-4" style="text-shadow: 2px 2px 4px #000; color: white;">SISTEM PAKAR DETEKSI DINI
+            PENYAKIT PADA TANAMAN PADI</h3>
+        <p class="mb-3" style="font-size: 3vh; text-shadow: 2px 2px 4px #000; color: white;">Sistem Pakar Yang
+            Dapat Mendiagnosa Penyakit Pada Tanaman Padi Anda</p>
+        <button class="btn btn-success mt-4 text-white"
+            style=" border-radius: 15px; width: auto; height: 40px; font-size: 3vh"
+            onclick="window.location='{{ route('login') }}';">Diagnosa sekarang!</button>
+    </div>
+
 
     <section id="about-us">
         <div class="container px-5">
