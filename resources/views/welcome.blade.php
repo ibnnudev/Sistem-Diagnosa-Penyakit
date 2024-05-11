@@ -43,44 +43,32 @@
         </div>
     </nav>
     <!-- Mashead header-->
-    <header class="masthead">
+    <header id="home" class="masthead"
+        style="background-image: url('{{ asset('assets/img/hero.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; display: flex; justify-content: center; align-items: center;">
         <div class="container px-5">
             <div class="row gx-5 align-items-center">
-                <div class="col-lg-6">
+                <div>
                     <!-- Mashead text and app badges-->
-                    <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                        <h3 class="display-5 lh-1 mb-3">Selamat Datang di</h3>
-                        <h1 class="display-3 lh-1 mb-3">Sistem Pakar Deteksi Dini Penyakit Pada Tanaman Padi</h1>
+                    <div class="mb-5 mb-lg-0 text-center text-lg-center text-white">
+                        <h3 class="display-3 mb-4">SISTEM PAKAR DETEKSI DINI PENYAKIT PADA TANAMAN PADI</h3>
+                        <p class="mb-3" style="font-size: 3vh">Sistem Pakar Yang Dapat Mendiagnosa Penyakit Pada
+                            Tanaman Padi Anda
+                        </p>
+                        <button class="btn btn-outline-light" style="color: white; border-radius: 15px;"
+                            onmouseover="this.style.color='#00ff73';" onmouseout="this.style.color='white';"
+                            onclick="window.location='{{ route('login') }}';">Diagnosa sekarang!</button>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <!-- hero image -->
-                    <img class="img-fluid rounded-3 h-1" src="{{ asset('assets/img/hero.jpg') }}" alt="..." />
                 </div>
             </div>
         </div>
     </header>
-    <!-- Quote/testimonial aside-->
-    <aside class="text-center bg-gradient-primary-to-secondary">
-        <div class="container px-5">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-xl-8">
-                    <div class="h2 fs-1 text-white mb-4">"Sistem pakar merupakan sistem yang berfungsi untuk mengetahui
-                        penyakit pada tanaman padi"
-                        <a class="text-decoration-none text-white" href="{{ route('login') }}">Diagnosa
-                            sekarang !</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </aside>
-    <!-- App about-us section-->
+
     <section id="about-us">
         <div class="container px-5">
-            <div class="row gx-5 align-items-center">
-                <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
+            <div class="align-items-center">
+                <div class="order-lg-1 mb-5 mb-lg-0">
                     <div class="container-fluid px-5">
-                        <div class="row gx-5">
+                        <div class="row gx-5 ">
                             <div class="col-md-6 mb-5">
                                 <!-- Feature item-->
                                 <div class="text-center">
@@ -98,12 +86,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </div>
-                <div class="col-lg-4 order-lg-0">
-                    <!-- image hero 2-->
-                    <img class="img-fluid rounded-3 h-1" src="{{ asset('assets/img/hero2.jpg') }}" alt="..." />
                 </div>
             </div>
         </div>
