@@ -31,8 +31,17 @@
                             <label for=""><b><i class="fas fa-user mr-1"></i> Nama</b></label>
                             <input type="text" class="form-control mb-3 w-50" name="nama">
                         @endrole
-
-                        <p>Pilih gejala yang sedang dirasakan.</p>
+                        <h4>Keterangan</h4>
+                        <ul>
+                            <li>Kategori gejala dibagi menjadi 2, yaitu daun dan batang</li>
+                            <li>⁠Gejala yang dipilih harus lebih dari 1
+                            </li>
+                            <li>⁠Pilihlah gejala sesuai yang terjadi dengan tanaman padi
+                            </li>
+                            <li>⁠Klik ‘Lihat Gambar’ untuk melihat contoh gejala
+                            </li>
+                            <li>Pilihlah tingkat kepercayaan. Seberapa mirip keadaan padi dengan gambar</li>
+                        </ul>
 
                         <label for=""><b><i class="fas fa-th mr-1"></i> Gejala-gejala</b></label>
 
