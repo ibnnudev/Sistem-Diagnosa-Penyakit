@@ -43,6 +43,7 @@ class GejalaController extends Controller
             'nama' => 'required|unique:gejalas,nama',
             'kategori' => 'required',
             'image' => 'required',
+            'info' => 'nullable',
         ]);
 
         $data = $request->all();
@@ -69,6 +70,7 @@ class GejalaController extends Controller
         $request->validate([
             'nama' => 'required|unique:gejalas,nama,' . $request->id,
             'kategori' => 'required',
+            'info' => 'nullable',
         ]);
 
         $gejala = Gejala::findOrFail($request->id);

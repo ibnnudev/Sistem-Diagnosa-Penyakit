@@ -14,14 +14,16 @@
             <thead>
                 <th>Kode</th>
                 <th>Nama Gejala</th>
+                <th>Info</th>
                 <th>Kategori</th>
-                <th></th>
+                <th>Aksi</th>
             </thead>
             <tbody>
                 @forelse($gejala as $row)
                     <tr>
                         <td><b>{{ $row->kode }}</b></td>
                         <td>{{ $row->nama }}</td>
+                        <td>{{ $row->info }}</td>
                         <td>{{ $row->kategori }}</td>
                         <td>
                             <div class="d-flex justify-between-space">
@@ -53,19 +55,19 @@
         <form action="{{ route('admin.gejala.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Kode Gejala</label>
                         <input type="text" class="form-control" name="kode" value="{{ $lastCode }}" disabled>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama Gejala</label>
                         <input type="text" class="form-control" name="nama" required>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
                         <select name="kategori" class="form-control" required>
@@ -73,6 +75,12 @@
                             <option value="daun">Daun</option>
                             <option value="batang">Batang</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="info">Info</label>
+                        <input type="text" class="form-control" name="info" required>
                     </div>
                 </div>
             </div>
@@ -95,19 +103,19 @@
             @csrf
             <input type="hidden" name="id">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Kode Gejala</label>
                         <input type="text" class="form-control" name="kode" value="{{ $lastCode }}" disabled>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama Gejala</label>
                         <input type="text" class="form-control" name="nama">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
                         <select name="kategori" class="form-control" required>
@@ -115,6 +123,12 @@
                             <option value="daun">Daun</option>
                             <option value="batang">Batang</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="info">Info</label>
+                        <input type="text" class="form-control" name="info">
                     </div>
                 </div>
             </div>
@@ -161,6 +175,7 @@
                     $('#edit-gejala input[name="id"]').val(res.id)
                     $('#edit-gejala input[name="nama"]').val(res.nama)
                     $('#edit-gejala input[name="kode"]').val(res.kode)
+                    $('#edit-gejala input[name="info"]').val(res.info)
                     $('#edit-gejala select[name="kategori"]').val(res.kategori)
                     let image = res.image ?
                         `<img src="{{ asset('storage/gejala') }}/${res.image}" class="img-thumbnail" width="60" height="60">` :

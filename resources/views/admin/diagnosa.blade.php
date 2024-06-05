@@ -104,6 +104,7 @@
                                                     <div class="modal-body">
                                                         <img src="{{ asset('storage/gejala/' . $value->image) }}"
                                                             class="img-fluid" alt="Gambar {{ $value->nama }}">
+                                                        <p class="mt-3">{{ $value->info }}</p>
                                                     </div>
                                                 </div>
                                             </div>

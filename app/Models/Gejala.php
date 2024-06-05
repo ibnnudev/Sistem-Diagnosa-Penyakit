@@ -15,6 +15,7 @@ class Gejala extends Model
         'kode',
         'kategori',
         'image',
+        'info'
     ];
 
     public $timestamps = false;
