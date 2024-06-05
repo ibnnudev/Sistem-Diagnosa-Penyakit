@@ -36,7 +36,23 @@ class DashboardController extends Controller
             ->groupBy('days', 'created_at') // Include created_at in GROUP BY
             ->orderBy('created_at', 'asc')->get();
 
-        return view('admin.dashboard', compact('logs', 'riwayat'));
+
+        $riwayatPerPenyakit = Riwayat::select('hasil_diagnosa')->get();
+        $resultPerPenyakit = [];
+        foreach ($riwayatPerPenyakit as $rpp) {
+            $unserialized = unserialize($rpp->hasil_diagnosa);
+            foreach ($unserialized as $key => $value) {
+                $nama_penyakit = $value['nama_penyakit'];
+                // check if nama_penyakit is exist if not count it
+                if (!array_key_exists($nama_penyakit, $resultPerPenyakit)) {
+                    $resultPerPenyakit[$nama_penyakit] = 1;
+                } else {
+                    $resultPerPenyakit[$nama_penyakit] += 1;
+                }
+            }
+        }
+
+        return view('admin.dashboard', compact('logs', 'riwayat', 'resultPerPenyakit'));
     }
 
     /**
