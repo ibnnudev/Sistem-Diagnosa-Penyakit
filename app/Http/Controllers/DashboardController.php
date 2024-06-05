@@ -43,7 +43,6 @@ class DashboardController extends Controller
             $unserialized = unserialize($rpp->hasil_diagnosa);
             foreach ($unserialized as $key => $value) {
                 $nama_penyakit = $value['nama_penyakit'];
-                // check if nama_penyakit is exist if not count it
                 if (!array_key_exists($nama_penyakit, $resultPerPenyakit)) {
                     $resultPerPenyakit[$nama_penyakit] = 1;
                 } else {
